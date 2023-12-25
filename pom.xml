@@ -6,17 +6,15 @@
 
     <groupId>com.github.nathakusuma</groupId>
     <artifactId>CubicIceDiscord</artifactId>
-    <version>2021.12</version>
+    <version>5.0.0-beta.13-1</version>
     <packaging>jar</packaging>
 
     <name>CubicIceDiscord</name>
 
-    <description>Cubic Ice Discord Bot Handler</description>
     <properties>
-        <java.version>16</java.version>
+        <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-    <url>https://github.com/NathaKusuma</url>
 
     <build>
         <plugins>
@@ -57,7 +55,7 @@
     <repositories>
         <repository>
             <id>papermc-repo</id>
-            <url>https://papermc.io/repo/repository/maven-public/</url>
+            <url>https://repo.papermc.io/repository/maven-public/</url>
         </repository>
         <repository>
             <id>sonatype</id>
@@ -69,13 +67,14 @@
         <dependency>
             <groupId>io.papermc.paper</groupId>
             <artifactId>paper-api</artifactId>
-            <version>1.17.1-R0.1-SNAPSHOT</version>
+            <version>1.20.4-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>net.dv8tion</groupId>
             <artifactId>JDA</artifactId>
-            <version>5.0.0-alpha.2</version>
+            <version>5.0.0-beta.18</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 </project>

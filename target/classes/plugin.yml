@@ -1,0 +1,4 @@
+name: CubicIceDiscord
+version: '5.0.0-beta.13-1'
+main: com.github.nathakusuma.cubicicediscord.CubicIceDiscord
+api-version: 1.20

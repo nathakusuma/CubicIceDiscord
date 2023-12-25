@@ -2,57 +2,37 @@ package com.github.nathakusuma.cubicicediscord;
 
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
-import net.dv8tion.jda.api.entities.Role;
+import net.dv8tion.jda.api.requests.GatewayIntent;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import javax.security.auth.login.LoginException;
-import java.awt.*;
-import java.util.Objects;
-
 public final class CubicIceDiscord extends JavaPlugin {
+    private static JDA bot = null;
 
-    public static final Color themeColor = new Color(0x8cd7f8);
-    public static JDA bot = null;
-    public static Role staffRole = null;
-
+    public static JDA getBot() {
+        return bot;
+    }
+    private void startBot() {
+        JDABuilder jdaBuilder = JDABuilder.createDefault(getConfig().getString("BotToken"));
+        jdaBuilder.enableIntents(
+                GatewayIntent.MESSAGE_CONTENT,
+                GatewayIntent.GUILD_MEMBERS,
+                GatewayIntent.GUILD_PRESENCES
+        );
+        bot = jdaBuilder.build();
+        try {
+            bot.awaitReady();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
     @Override
     public void onEnable() {
         saveDefaultConfig();
-        DataYML.saveDefaultData();
         startBot();
-        registerCommands();
-        registerEvents();
-        upsertCommands();
     }
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
+        bot.shutdownNow();
     }
-
-    private void startBot() {
-        JDABuilder jdaBuilder = JDABuilder.createDefault(getConfig().getString("BotToken"));
-        jdaBuilder.addEventListeners(new StaffChat());
-        jdaBuilder.addEventListeners(new Ticket());
-        try {
-            bot = jdaBuilder.build();
-            bot.awaitReady();
-        } catch (LoginException | InterruptedException e) {
-            e.printStackTrace();
-        }
-        staffRole = bot.getRoleById(Objects.requireNonNull(getConfig().getString("StaffRoleID")));
-    }
-
-    private void registerCommands(){
-        Objects.requireNonNull(this.getServer().getPluginCommand("s")).setExecutor(new StaffChat());
-    }
-
-    private void registerEvents(){
-        this.getServer().getPluginManager().registerEvents(new StaffChat(), this);
-    }
-
-    private void upsertCommands(){
-        Ticket.upsertCommand();
-    }
-
 }

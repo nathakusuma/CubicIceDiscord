@@ -1,16 +1,4 @@
 name: CubicIceDiscord
 version: '${project.version}'
 main: com.github.nathakusuma.cubicicediscord.CubicIceDiscord
-api-version: 1.17
-authors: [ BERTOTOD ]
-description: Cubic Ice Discord Bot Handler
-website: https://github.com/nathakusuma
-softdepend:
-  - DiscordSRV
-  - PlaceholderAPI
-commands:
-  s:
-    usage: /s <message>
-    description: Staff Chat command
-    permission: cubicice.staffchat
-    permission-message: Kamu tidak memiliki izin untuk menggunakan command itu!
+api-version: 1.20
